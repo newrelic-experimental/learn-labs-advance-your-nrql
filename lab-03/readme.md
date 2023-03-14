@@ -21,7 +21,7 @@ SELECT average(duration) FROM Transaction WHERE appName='WebPortal'
 SELECT count(*) FROM Transaction WHERE appName='WebPortal' AND duration > 0.0577
 ```
 
-Whilst this works it is very manual and needs updating. The NRQL sub query feature allows us to derive this value with a sub query. To use a sub query is striaghtforward, simply replace the value you are testing against with a bracketed query:
+Whilst this works it needs updating manually each time the average changes. The NRQL sub query feature allows us to derive this value with a sub query. To use a sub query is striaghtforward, simply replace the value you are testing against with a bracketed query:
 
 ```
 SELECT ... FROM ... WHERE column > (SELECT...)
