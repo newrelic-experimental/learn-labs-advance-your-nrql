@@ -52,7 +52,7 @@ The query needs some explaining:
 The results displayed in this table is much more useful and easier to understand at a glance. We can get an idea for which applications are slow without having to read the duration values. It provides *intelligence* not just raw data. 
 
 ### ✏️ Challenge #1:
-Now its your turn! A colleague has created a chart of the 5 top most hosts that are using a lot of memory. Refactor their query so that it uses nested aggregation instead to display a more informative widget "Hosts with low memory remaining"
+Now its your turn! A colleague has created a chart of the top 5 hosts that are using a lot of memory. Refactor their query so that it uses nested aggregation instead to display a more informative widget "Hosts with low memory remaining"
 
 This is their query:
 ```
@@ -60,6 +60,7 @@ FROM SystemSample SELECT latest(memoryUsedPercent) LIMIT 5 FACET hostname SINCE 
 ```
 
 > Hint: You will need to choose a threshold for what you consider is 'low memory'
+
 > Hint: Naming fields using `AS` can help ensure you're working on the right fields
 
 ### ✏️ Challenge #2:
