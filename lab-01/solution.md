@@ -1,5 +1,5 @@
 # Lab 01: Solutions
-Here you can find all the solutions to the challenges in Lab 01. You can also find these on [this dashboard.](https://onenr.io/08wopX2pkRx)
+Here you can find all the solutions to the challenges in Lab 01. You can also find these on [this dashboard.](https://onenr.io/0dQeLKPJWje)
 
 ### Challenge #1
 Your query should look something like this:

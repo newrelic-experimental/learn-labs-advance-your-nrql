@@ -1,5 +1,5 @@
 # Lab 03: Solutions
-{Put the solution to the challenges here!}
+Here you can find all the solutions to the challenges in Lab 03. You can also find these on [this dashboard.](https://onenr.io/0nQxlZ9ndQV)
 
 ## Challenge 1
 To solve this challenge simply replace the `average()` function with `percentile()`

@@ -1,5 +1,5 @@
 # Lab 02: Solutions
-Here you can find all the solutions to the challenges in Lab 02. You can also find these on [this dashboard.](https://onenr.io/0ZQW6A2ykjW)
+Here you can find all the solutions to the challenges in Lab 02. You can also find these on [this dashboard.](https://onenr.io/0kjnv0lOXjo)
 
 ## Challenge #1
 In this solution we have chosen a threshold of 75% above which we consider the host to be low on memory.

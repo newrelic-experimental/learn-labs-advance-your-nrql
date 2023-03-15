@@ -1,5 +1,5 @@
 # Lab 04: Solutions
-
+Here you can find all the solutions to the challenges in Lab 04. You can also find a dashboard demonstrating the result of completing all the tasks here [this dashboard.](https://onenr.io/0EjOzvMqDR6)
 
 ### Challenge 1
 The variable is added to the `WHERE` clause: `AND userAgentName in ({{browser}})`

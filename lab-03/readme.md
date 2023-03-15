@@ -114,11 +114,11 @@ The output shoud look something like this:
 ## Sub query variables
 You may have a requirement to use a sub query multiple times in your NRQL. Rather than repeat it multiple times you can define it as a variable and then use it multiple times. This can siginficantly simplify your query whilst at the same time ensure you are not querying more data than you need to.
 
-Let's revisit the delta query from before. As well as displaying the delta it might be useful to show the current avergae and the weekly average all together:
+Let's revisit the delta query from before. As well as displaying the delta it might be useful to show the current average and the weekly average all together:
 
 ```
 SELECT 
- average(duration) as 'Current Avergage',
+ average(duration) as 'Current Average',
  (SELECT average(duration) AS 'Delta' FROM Transaction WHERE appName='WebPortal' SINCE 1 week ago) as 'WeeklyAverage',
  average(duration)-(SELECT average(duration) AS 'Delta' FROM Transaction WHERE appName='WebPortal' SINCE 1 week ago) as 'Delta'
 FROM Transaction WHERE appName='WebPortal' SINCE 1 hour ago
@@ -128,7 +128,7 @@ You can see the sub query appears twice. Let's rewrite this using the `WITH...AS
 ```
 WITH (SELECT average(duration) AS 'Delta' FROM Transaction WHERE appName='WebPortal' SINCE 1 week ago) as wkAvg 
 SELECT 
- average(duration) as 'Current Avergage',
+ average(duration) as 'Current Average',
  wkAvg as 'WeeklyAverage',
  average(duration)-wkAvg as 'Delta'
 FROM Transaction WHERE appName='WebPortal' SINCE 1 hour ago
