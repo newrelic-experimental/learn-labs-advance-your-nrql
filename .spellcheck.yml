@@ -4,5 +4,5 @@ matrix:
     lang: en
     d: en_US
   sources:
-  - **/*.md 
+  - '**/*.md' 
 
