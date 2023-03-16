@@ -4,7 +4,7 @@ In this lab you will learn to use **sub queries** to connect data from multiple 
 ## Pre-requisites
 To complete this lab you need access to the Demotron v2 account in New Relic. This can be accessed via your NRU learning account.
 
-## Dyamically generated filters
+## Dynamically generated filters
 When querying data you may sometimes wish to filter that data by some threshold. Consider this simple query that counts the number of transactions that are taking longer than a threshold of 0.5 seconds:
 
 ```
@@ -21,7 +21,7 @@ SELECT average(duration) FROM Transaction WHERE appName='WebPortal'
 SELECT count(*) FROM Transaction WHERE appName='WebPortal' AND duration > 0.0577
 ```
 
-Whilst this works it needs updating manually each time the average changes. The NRQL sub query feature allows us to derive this value with a sub query. To use a sub query is striaghtforward, simply replace the value you are testing against with a bracketed query:
+Whilst this works it needs updating manually each time the average changes. The NRQL sub query feature allows us to derive this value with a sub query. To use a sub query is straightforward, simply replace the value you are testing against with a bracketed query:
 
 ```
 SELECT ... FROM ... WHERE column > (SELECT...)
@@ -74,7 +74,7 @@ Write a new query based upon the answer to Challenge #3 that shows the average t
 [[-Solution-]](./solution.md#challenge-4)
 
 
-## Dynamically dervied values
+## Dynamically derived values
 Not only can we use sub queries for filtering our data we can also use it to calculate new derived values within the `SELECT` clause. Taking our previous example, what if we wanted to know the difference, i.e. delta, between now and the average for the entire week? 
 
 We can do this by putting a sub query into the SELECT and treating it just like any other value:
@@ -89,7 +89,7 @@ SELECT average(duration)-(SELECT average(duration) AS 'Delta' FROM Transaction W
 ```
 ![Billboard 1](images/billboard1.png)
 
-In this query above we are able to calculate the delta between the current average duaration and that for the whole week. Notice how the sub query has its own `SINCE` clause to ensure we're comparing with the weekly average.
+In this query above we are able to calculate the delta between the current average duration and that for the whole week. Notice how the sub query has its own `SINCE` clause to ensure we're comparing with the weekly average.
 
 > Note: The since clause of the inner query will be affected by the time picker on a dashboard. Set **ignore time picker** for any charts where the sub query time window should not be affected by the time picker.
 
@@ -106,13 +106,13 @@ SELECT average(duration)-(SELECT average(duration) AS 'Delta' FROM Transaction W
 
 > Hint: Use `TIMESERIES` to view data over time
 
-The output shoud look something like this:
+The output should look something like this:
 ![Linechart 1](images/linechart1.png)
 
 [[-Solution-]](./solution.md#challenge-5)
 
 ## Sub query variables
-You may have a requirement to use a sub query multiple times in your NRQL. Rather than repeat it multiple times you can define it as a variable and then use it multiple times. This can siginficantly simplify your query whilst at the same time ensure you are not querying more data than you need to.
+You may have a requirement to use a sub query multiple times in your NRQL. Rather than repeat it multiple times you can define it as a variable and then use it multiple times. This can significantly simplify your query whilst at the same time ensure you are not querying more data than you need to.
 
 Let's revisit the delta query from before. As well as displaying the delta it might be useful to show the current average and the weekly average all together:
 

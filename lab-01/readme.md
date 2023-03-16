@@ -17,7 +17,7 @@ select count(*) from PageView where pageUrl like '%phones/%' facet pageUrl WHERE
 ```
 ![pie chart 1](images/pie1.png)
 
-This pie chart shows the data, but the data in the facet we're displaying (`pageUrl`) is very long and in fact the product ID is often clipped. This makes it hard to read, especially at a glance. See how much easier the follwoing version of the same data is to read with the domain name removed. We can focus on the details and there is no data clipping:
+This pie chart shows the data, but the data in the facet we're displaying (`pageUrl`) is very long and in fact the product ID is often clipped. This makes it hard to read, especially at a glance. See how much easier the following version of the same data is to read with the domain name removed. We can focus on the details and there is no data clipping:
 
 ![pie chart 2](images/pie2.png)
 
@@ -33,7 +33,7 @@ The anchor parse (`aparse()`) function is our go-to function to help with this s
 
 The pattern is where the magic happens. It helps you define what to keep and what to throw away from a string. The pattern can contain two special characters `%` and `*`.  Both of these are 'wildcards'. A 'wildcard' match means it matches any and all characters. 
 
-- One, `%`,  is used to match any and all characters to **discard** (dont show)
+- One, `%`,  is used to match any and all characters to **discard** (don't show)
 - One, `*`,  is used to match any and all characters to **capture** (show)
 
 This is best shown by example! Consider this pageUrl: `http://webportal.telco.nrdemo.com/browse/phones/99912353`. In this example we want to discard the domain name leaving just the product type and number `/phones/99912353`. How do we do that?
@@ -48,14 +48,14 @@ You can see this in action here on Demotron:
 SELECT aparse(pageUrl,'http://webportal.telco.nrdemo.com/browse*') as product FROM PageView WHERE pageUrl LIKE '%phones/%' AND appName='WebPortal'
 ```
 
-This matches, and **captures** everything after `.../browse`. Thats what the `*` does. This works if all the first part of your url's all exactly match: "http://webportal.telco.nrdemo.com/browse/". But if you look hard in the data you'll notice we have some pageUrl's that dont start with "http://webportal...", they have an empty 'product' column because the pattern didnt match
+This matches, and **captures** everything after `.../browse`. Thats what the `*` does. This works if all the first part of your url's all exactly match: "http://webportal.telco.nrdemo.com/browse/". But if you look hard in the data you'll notice we have some pageUrl's that don't start with "http://webportal...", they have an empty 'product' column because the pattern didn't match
 
 Don't believe us? Try this query:
 ```
 SELECT aparse(pageUrl,'http://webportal.telco.nrdemo.com/browse*') as product, pageUrl FROM PageView WHERE pageUrl like '%phones/%' AND appName='WebPortal' AND pageUrl NOT LIKE 'http://webportal%'
 ```
 
-This is a common problem with patterns, they are too restrictive. We need to add some flexibility to our pattern, and thats where `%` comes in. It lets us match a sequeunce of characters but doesnt capture it. Here is a better pattern:
+This is a common problem with patterns, they are too restrictive. We need to add some flexibility to our pattern, and thats where `%` comes in. It lets us match a sequence of characters but doesn't capture it. Here is a better pattern:
 
 ```
 Page URL: http://webportal.telco.nrdemo.com/browse/phones/99912353
@@ -145,7 +145,7 @@ The output should look something like this:
 [[-Solution-]](./solution.md#challenge-4)
 
 ## Extract data for evaluation
-Let's change gears now and look at another common use case: extracting values from the data. Sometimes the data in a column contains multiple useful values that we would like to perform anlysis on. This is especially true for unstructured logs. Whilst we can apply parsing rules to logs as they are ingested we can also parse them when we query them with, among other things, aparse().
+Let's change gears now and look at another common use case: extracting values from the data. Sometimes the data in a column contains multiple useful values that we would like to perform analysis on. This is especially true for unstructured logs. Whilst we can apply parsing rules to logs as they are ingested we can also parse them when we query them with, among other things, aparse().
 
 
 In the Demotron V2 account there is Log data being ingested with interesting data in the message column. You can view this yourself with this query:
@@ -161,7 +161,7 @@ ADD to cart: http://addtocart/35e80ca05773/item" body: {"item":"Cheese","itemId"
 You can see within this text string there is lots of buried information. There is what looks like a cart ID in that URL (`35e80ca05773`), an item name, itemId and a unitPrice field. This looks like its logging the addition of items to a shopping cart - thats really useful business data if we could access it!
 
 ### ✏️ Challenge #5
-To give us a good feel for how much business our online shop is doing it would be great to know how many unique carts (i.e. customers) there are at any given time. Write a pattern to capture the cartID from the URL in the log mesage and count how many unique carts there have been over the last hour.  Here is a query to use as a starting point:
+To give us a good feel for how much business our online shop is doing it would be great to know how many unique carts (i.e. customers) there are at any given time. Write a pattern to capture the cartID from the URL in the log message and count how many unique carts there have been over the last hour.  Here is a query to use as a starting point:
 
 ```
 FROM Log WITH aparse(message,'YOUR-PATTERN-HERE') AS cartId SELECT uniqueCount(cartId) WHERE message like 'ADD to cart:%' 
@@ -178,7 +178,7 @@ aparse(string, pattern) AS (attribute1, attribute2, attribute3,...)
 
 Each `*` in the pattern will relate to an attribute in the AS clause.
 
-For example for the log line `four legged animals {"a":"dog", "b":"cat", "c":"fox"}` we can extract each of these three values into seperate columns with this pattern like this:
+For example for the log line `four legged animals {"a":"dog", "b":"cat", "c":"fox"}` we can extract each of these three values into separate columns with this pattern like this:
 
 ```
 FROM Log WITH aparse('four legged animals {"a":"dog", "b":"cat", "c":"fox"}','%{"a":"*", "b":"*", "c":"*"}') AS (attrA,attrB,attrC) select attrA,attrB,attrC LIMIT 10
@@ -229,10 +229,10 @@ Can you write an NRQL query that displays the average cart value?
 [[-Solution-]](./solution.md#challenge-8)
 
 
-## Conditional logic for clarity and embelishment
+## Conditional logic for clarity and embellishment
 Before we change up a gear and move onto the final part of the lab, lets take a brief foray to look at another super simple but really effective technique for manipulating the data that can really supercharge your dashboards. This is so useful I couldn't not include it!
 
-One technique for making data more understandable at glance is to change its colour based on the value. You may already do this using the billboard widget which allows you to set a threshold for warning and critical which changes the colour of the widget. Howver its a touch limited and doesnt work with other widget types.
+One technique for making data more understandable at glance is to change its colour based on the value. You may already do this using the billboard widget which allows you to set a threshold for warning and critical which changes the colour of the widget. Howver its a touch limited and doesn't work with other widget types.
 
 The `IF` clause allows us to replicate this functionality to some extent allowing us to display a value of our choice based on the calculated values. 
 
@@ -248,7 +248,7 @@ You can see how immediately powerful and easy to understand at a glance this is:
 ![Table 2](images/table2.png)
 
 ### ✏️ Challenge #9
-Its time to up your emoji game! `IF` statements can be nested, this means you can display more than two options. Refactor the query above so that it displays three different indicators: good, warning, crictical. You can use any string or emoji character you like. Decide your own thresholds.
+Its time to up your emoji game! `IF` statements can be nested, this means you can display more than two options. Refactor the query above so that it displays three different indicators: good, warning, critical. You can use any string or emoji character you like. Decide your own thresholds.
 
 ```
 FROM Transaction SELECT average(duration), IF( ____ ) AS 'Status' FACET appName 
@@ -261,9 +261,9 @@ FROM Transaction SELECT average(duration), IF( ____ ) AS 'Status' FACET appName
 [[-Solution-]](./solution.md#challenge-9)
 
 ## More complex pattern matching
-We've been using anchor parse to search and extract the data values we want. But sometimes the data is more complicated and requires a more powerful pattern match. The [`capture()`](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/nrql-syntax-clauses-functions/#func-capture) function in NRQL performs a similar function to `aparse()` but instead of `*` and `%` characters for matching it supprots full regular expression matching.
+We've been using anchor parse to search and extract the data values we want. But sometimes the data is more complicated and requires a more powerful pattern match. The [`capture()`](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/nrql-syntax-clauses-functions/#func-capture) function in NRQL performs a similar function to `aparse()` but instead of `*` and `%` characters for matching it supports full regular expression matching.
 
-Pepole have written books on regular epxressions, so we'll not go into too much detail. But you can convert an aparse() to a capture() like this:
+People have written books on regular expressions, so we'll not go into too much detail. But you can convert an aparse() to a capture() like this:
 
 Let's revisit a pattern we explored earlier:
 
@@ -271,7 +271,7 @@ Let's revisit a pattern we explored earlier:
 WITH aparse('a=dog b=cat c=fox', 'a=* b=* c=*') AS (attrA,attrB,attrC)
 ```
 
-The capture equivaent of this is:
+The capture equivalent of this is:
 
 ```
 FROM Log WITH  capture('a=dog b=cat c=fox', r'a=(?<attrA>.*?)=(?<attrB>.*?)=(?<attrC>.*?)')  select attrA,attrB,attrC,message LIMIT 10

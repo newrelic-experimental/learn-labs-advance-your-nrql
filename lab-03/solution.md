@@ -8,7 +8,7 @@ SELECT count(*) from Transaction where appName='WebPortal' AND duration > (SELEC
 ```
 
 ## Challenge 2
-In order to solve this we need to derive the 99th percentile duration which can be achived with `percentile(duration,99)`. We also need to facet by `name` to get a list, and a `LIMIT max` always helps to ensure we're not clipping our results:
+In order to solve this we need to derive the 99th percentile duration which can be achieved with `percentile(duration,99)`. We also need to facet by `name` to get a list, and a `LIMIT max` always helps to ensure we're not clipping our results:
 
 ```
 SELECT count(*) FROM Transaction WHERE appName='WebPortal' AND duration > (SELECT percentile(duration,99) FROM Transaction WHERE appName='WebPortal') FACET name LIMIT max

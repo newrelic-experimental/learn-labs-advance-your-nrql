@@ -16,7 +16,7 @@ select aparse(pageUrl,'%/browse*') as product, pageUrl from PageView where pageU
 ### Challenge #2
 There are a number of solutions to this problem. This one of the shortest patterns you could use: `'%/*/%'`
 
-This uses to `%` wildcards to match (and discard) everything up until the first `/`, then capture everything until the next `/` (wtih `*`) and then discards the rest (the seconds `%`):
+This uses to `%` wildcards to match (and discard) everything up until the first `/`, then capture everything until the next `/` (with `*`) and then discards the rest (the seconds `%`):
 
 ```
 FROM PageView SELECT average(duration) FACET aparse(browserTransactionName,'%/*/%') as group WHERE appName='WebPortal'
@@ -69,7 +69,7 @@ FROM Log WITH aparse(message,'%addtocart/*/%item":"*"%itemId":"*"%unitPrice":"*"
 ### Challenge #8
 In order to calculate an average value we need to convert the price to a number. To do that we need to remove the `$` sign. You can do that by updating the pattern so that the `$` is no longer captured as we have done here. Another alternative solution would be to use the [substring()](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/nrql-syntax-clauses-functions/#func-substring) function to remove it.
 
-Once we have the price value isolated with no `$` sign we then need to cast it to a numeric. We simply wrpa the value in numeric(). Notice how we sum() the prices togetehr for each cart then use nested aggregation to determine the average.
+Once we have the price value isolated with no `$` sign we then need to cast it to a numeric. We simply wrpa the value in numeric(). Notice how we sum() the prices together for each cart then use nested aggregation to determine the average.
 
 A solution adjusting the pattern to remove the `$`:
 ```
@@ -84,7 +84,7 @@ SELECT average(cartPrice) as avgCartPrice FROM ( FROM Log WITH aparse(message,'%
 > Note: This works up to 2000 carts, after which the inner query will be limited. If you have data that is higher frequency than this then you should consider sending the basket size/value in as an atribute of the ingested data itself, movign the processing closer to the source.
 
 ### Challenge 9
-Any opportunity to use the poo emoji shouldnt be wasted!:
+Any opportunity to use the poo emoji shouldn't be wasted!:
 
 ```
 FROM Transaction SELECT average(duration), IF(average(duration) < 0.2,'✅',IF(average(duration) < 0.3,'⚠️','💩') ) as Status FACET appName 

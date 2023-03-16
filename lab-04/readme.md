@@ -27,7 +27,7 @@ The widget we added to the dashboard shows the number of page views over the las
 - Set the "Name to use in queries" field to `viewDevice`. This is the varibale identifier. It can be any string starting with a letter and no spaces. We'll use this later in our query.
 - Set the "Display name" field to "Device". This is the 'friendly' label that will be shown along side our variable.
 - Set the Type to "List". This type allows us to specify a list of values to be selected, we'll explore the others later.
-- Enter the values "Desktop" and "Mobile" in the values field, seperated by a comma: `Desktop,Mobile,Tablet`
+- Enter the values "Desktop" and "Mobile" in the values field, separated by a comma: `Desktop,Mobile,Tablet`
 - Enable the "multi-value" display option
 - For default value, choose "Select All"
 - Set the output format to "String"
@@ -46,7 +46,7 @@ Duplicate the billboard widget and adjust the query by adding the following to t
 SELECT count(*) AS 'Page views' FROM PageView where appName = 'WebPortal' SINCE 1 day ago WHERE deviceType in ({{viewDevice}})
 ```
 
-This `WHERE` clause filters the results by the `deviceType` attribute. We reference the variable `viewDevice` by enclosing the variable identifier in doule curly braces: `{{viewDevice}}`. 
+This `WHERE` clause filters the results by the `deviceType` attribute. We reference the variable `viewDevice` by enclosing the variable identifier in double curly braces: `{{viewDevice}}`. 
 
 Notice we use `WHERE attr IN (..)` rather than `WHERE attr = '...'`. This is because the variable can be a list of multiple values. Its best practice to always use this structure with template variables.
 
@@ -74,7 +74,7 @@ Lets update the variable we just created to use a query instead of a hard coded 
 - Click 'Save'
 - Click 'Done editing' (top right of Dashboard)
 
-Try changing the variable selections and observe how the list is the same as the hard coded list. Also, take a look at the query for the widget by clicking on the elipsis and choosing 'View query'. Notice how the variable is replaced by the values.
+Try changing the variable selections and observe how the list is the same as the hard coded list. Also, take a look at the query for the widget by clicking on the ellipsis and choosing 'View query'. Notice how the variable is replaced by the values.
 
 **Important:** When using a query to provide a list of values you **must** use the [`uniques(attr,limit)`](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/nrql-syntax-clauses-functions/#func-uniques) function as we did here. If you think there may be a lot of unique values then ensure to set the limit parameter of the `uniques(atrr,limit)` function. You can set the limit up to 10,000.
 
@@ -121,19 +121,19 @@ SELECT percentile(duration,{{chosenPercentile}}) AS 'Page views' FROM PageView W
 
 The important part of this query is: `percentile(duration,{{chosenPercentile}})`. You can see that just like with the filtering we supply the value for our percentile threshold using `{{variableName}}`
 
-Try changing the percentile value and observe how the chart changes. You can apply this technique to any funciton that takse a numeric parameter.
+Try changing the percentile value and observe how the chart changes. You can apply this technique to any function that takes a numeric parameter.
 
 
 ### ✏️ Task #6: User chosen identifiers
 We've seen how to filter queries based on variables and how to supply numeric values to functions. There is one more way we can affect the query and that is by using *identifier variables* to change the query itself. Consider a dashboard showing performance data for an application. You may want to view the data faceted  by device type, and then by city, and then by user agent. Without template variables you would have to create widgets for each of these cases, but variables allow us to make this user selectable.
 
-The previous chart we built is faceted by deviceType. Lets upgrade it so that we can facet it by an atteibute of our choice.
+The previous chart we built is faceted by deviceType. Lets upgrade it so that we can facet it by an attribute of our choice.
 
 First create a new variable:
 
 - Call it `chosenFacet`
 - Set the type as List and add some attribute names, e.g. `deviceType,countryCode,userAgentName`
-- Do not enable muli-value
+- Do not enable multi-value
 - Select a default
 - Select `Identifier` as the output format
 
@@ -168,7 +168,7 @@ This is very powerful. we can create Dashboards that filter to user supplied con
 
 
 ### ✏️ Task #8: Dynamically extracted list values
-In this final task we'll explore how to generate variable lists with partial values extracted from the data. Consider a case where you want to filter the data on the dashboard to a set of page groups. The variable list will contain the page groups and when you choose a group all those records matchign will be displayed.
+In this final task we'll explore how to generate variable lists with partial values extracted from the data. Consider a case where you want to filter the data on the dashboard to a set of page groups. The variable list will contain the page groups and when you choose a group all those records matching will be displayed.
 
 Create another new variable:
 
@@ -181,7 +181,7 @@ Add a new widget to the dashboard with this query:
 SELECT duration, browserTransactionName, session  FROM PageView  WHERE appName='WebPortal' AND aparse(browserTransactionName, '%/*/%') IN ({{chosenPageGroup}}) 
 ```
 
-Theres a number of things going on here, lets break it down.
+There's a number of things going on here, lets break it down.
 
 Firstly we are extracting the 'page group' from the browserTransactionName field using `aparse()`. This is basically capturing the part after the first `/` and before the next `/`:
 
