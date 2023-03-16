@@ -21,4 +21,4 @@ In this lab you will learn to use **sub queries** to connect data from multiple 
 In this lab you will learn how to Build more flexible interactive dashboards by leveraging the **variable templating** features.
 
 ## Demo Account Access
-These labs use data within the [New Relic University](https://learn.newrelic.com/) demo account "Demotron V2". Whilst you may be able to work through them on your own data you should reach out to your account team for access to the demo account.
+These labs use data within the [New Relic University](https://learn.newrelic.com/) demo account "Demotron V2". Whilst you may be able to work through them on your own data you should reach out to your account team or contact the New Relic University at learn@newrelic.com for access to the demo account.
