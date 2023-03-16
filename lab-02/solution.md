@@ -11,7 +11,7 @@ SELECT latest(memoryUsedPercent) as '% Used' FROM (FROM SystemSample SELECT late
 ```
 
 ## Challenge #2
-To display a count of hosts with low mwmory we used the `count()` aggregation function and remove the `FACET` in the outer query:
+To display a count of hosts with low memory we used the `count()` aggregation function and remove the `FACET` in the outer query:
 
 ```
 SELECT count(*) as 'Hosts low on memory' FROM (FROM SystemSample SELECT latest(memoryUsedPercent) as memoryUsedPercent LIMIT max FACET hostname) WHERE memoryUsedPercent >=75  SINCE 2 hours AGO

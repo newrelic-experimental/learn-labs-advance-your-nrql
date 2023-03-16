@@ -14,7 +14,7 @@
 {Some challenges to try and solve with what's been learnt.}
 
 ## Solutions
-The solutions to the challenges in this lab can be found [here](./solution.md). Dont take a peek until you've had a go!
+The solutions to the challenges in this lab can be found [here](./solution.md). Don't take a peek until you've had a go!
 
 ## Resources
-{Any useful reources to help provide more background?}
+{Any useful resources to help provide more background?}

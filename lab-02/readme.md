@@ -7,11 +7,11 @@ To complete this lab you need access to the Demotron v2 account in New Relic. Th
 ## Introduction
 Any given NRQL query returns a result set based upon the data available at query time. Whilst you can derive new values from the data using functions such as average(), count() and percentile() its only possible to filter on values already present in the data. You can not filter on these derived values.
 
-At times its useful to reduce the data output of a query to make it more relevant and easier to understand. For instance rather than listing the averge load of 1000 hosts in a long table, you might want to list only those hosts you care about that have a load above a certain threshold. Or perhaps you just want to know how many hosts are above that threshold and are not interested in the details.
+At times its useful to reduce the data output of a query to make it more relevant and easier to understand. For instance rather than listing the average load of 1000 hosts in a long table, you might want to list only those hosts you care about that have a load above a certain threshold. Or perhaps you just want to know how many hosts are above that threshold and are not interested in the details.
 
 Making dashboards and data understandable *at a glance*, by reducing the cognitive effort to process them, is essential for effective and valuable dashboards.
 
-[Nested aggregation](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/nrql-query-tutorials/nested-aggregation-make-ordered-computations-single-query/) is a feature that allows you to perfrom this sort of splice and dicing of the results.
+[Nested aggregation](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/nrql-query-tutorials/nested-aggregation-make-ordered-computations-single-query/) is a feature that allows you to perform this sort of splice and dicing of the results.
 
 ## How to use nested aggregation
 Consider this simple query that lists all the applications average response times:
@@ -43,7 +43,7 @@ SELECT latest(avgDuration) FROM (FROM Transaction SELECT average(duration) AS av
 
 The query needs some explaining:
 
-* Our original query was enclosed in brackets. Note that the `SINCE` clause has been moved ouside of the brackets. This is a requirement of nested aggregation.
+* Our original query was enclosed in brackets. Note that the `SINCE` clause has been moved outside of the brackets. This is a requirement of nested aggregation.
 * In the left side of the outer query we `SELECT latest(avgDuration) FROM (inner query) ...`. Nested aggregation requires that we use an aggregation function, in this case we just want the values without any computation so `latest()` is used.
 * In the right hand side of the outer query we filter using our threshold  against the `avgDuration` field in the inner query and also facet by `appName` again: `... (inner query) WHERE avgDuration > 0.3 FACET appName ...`
 
@@ -87,9 +87,9 @@ It should look a bit like this:
 
 
 
-## Wrappping up
-You have learnt how to use nested aggregation to manipulate your query result data to make it more meaningful and provide more powerful summaries. Using these techniques help make dashboards and alerts more valueable.
+## Wrapping up
+You have learnt how to use nested aggregation to manipulate your query result data to make it more meaningful and provide more powerful summaries. Using these techniques help make dashboards and alerts more valuable.
 
 It is worth being mindful of the fact that the inner query is limited to 2000 results, so nested aggregation must be used carefully with large data sets.
 
-There are some more examples of nested aggreation functions and also a Data Byte video that explains the concept on our [documentation site](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/nrql-query-tutorials/nested-aggregation-make-ordered-computations-single-query/).
+There are some more examples of nested aggregation functions and also a Data Byte video that explains the concept on our [documentation site](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/nrql-query-tutorials/nested-aggregation-make-ordered-computations-single-query/).
