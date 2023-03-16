@@ -1,0 +1,8 @@
+matrix:
+- name: General spell check 
+  aspell:
+    lang: en
+    d: en_US
+  sources:
+  - **/*.md 
+
