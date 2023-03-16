@@ -87,9 +87,9 @@ It should look a bit like this:
 
 
 
-## Wrappping up
+## Wrapping up
 You have learnt how to use nested aggregation to manipulate your query result data to make it more meaningful and provide more powerful summaries. Using these techniques help make dashboards and alerts more valuable.
 
 It is worth being mindful of the fact that the inner query is limited to 2000 results, so nested aggregation must be used carefully with large data sets.
 
-There are some more examples of nested aggreation functions and also a Data Byte video that explains the concept on our [documentation site](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/nrql-query-tutorials/nested-aggregation-make-ordered-computations-single-query/).
+There are some more examples of nested aggregation functions and also a Data Byte video that explains the concept on our [documentation site](https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/nrql-query-tutorials/nested-aggregation-make-ordered-computations-single-query/).

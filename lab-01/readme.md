@@ -48,14 +48,14 @@ You can see this in action here on Demotron:
 SELECT aparse(pageUrl,'http://webportal.telco.nrdemo.com/browse*') as product FROM PageView WHERE pageUrl LIKE '%phones/%' AND appName='WebPortal'
 ```
 
-This matches, and **captures** everything after `.../browse`. Thats what the `*` does. This works if all the first part of your url's all exactly match: "http://webportal.telco.nrdemo.com/browse/". But if you look hard in the data you'll notice we have some pageUrl's that don't start with "http://webportal...", they have an empty 'product' column because the pattern didn't match
+This matches, and **captures** everything after `.../browse`. That's what the `*` does. This works if all the first part of your url's all exactly match: "http://webportal.telco.nrdemo.com/browse/". But if you look hard in the data you'll notice we have some pageUrl's that don't start with "http://webportal...", they have an empty 'product' column because the pattern didn't match
 
 Don't believe us? Try this query:
 ```
 SELECT aparse(pageUrl,'http://webportal.telco.nrdemo.com/browse*') as product, pageUrl FROM PageView WHERE pageUrl like '%phones/%' AND appName='WebPortal' AND pageUrl NOT LIKE 'http://webportal%'
 ```
 
-This is a common problem with patterns, they are too restrictive. We need to add some flexibility to our pattern, and thats where `%` comes in. It lets us match a sequence of characters but doesn't capture it. Here is a better pattern:
+This is a common problem with patterns, they are too restrictive. We need to add some flexibility to our pattern, and that's where `%` comes in. It lets us match a sequence of characters but doesn't capture it. Here is a better pattern:
 
 ```
 Page URL: http://webportal.telco.nrdemo.com/browse/phones/99912353
@@ -158,7 +158,7 @@ Here is an example record:
 ADD to cart: http://addtocart/35e80ca05773/item" body: {"item":"Cheese","itemId":"77697861","unitPrice":"$14.00"}
 ```
 
-You can see within this text string there is lots of buried information. There is what looks like a cart ID in that URL (`35e80ca05773`), an item name, itemId and a unitPrice field. This looks like its logging the addition of items to a shopping cart - thats really useful business data if we could access it!
+You can see within this text string there is lots of buried information. There is what looks like a cart ID in that URL (`35e80ca05773`), an item name, itemId and a unitPrice field. This looks like its logging the addition of items to a shopping cart - that's really useful business data if we could access it!
 
 ### ✏️ Challenge #5
 To give us a good feel for how much business our online shop is doing it would be great to know how many unique carts (i.e. customers) there are at any given time. Write a pattern to capture the cartID from the URL in the log message and count how many unique carts there have been over the last hour.  Here is a query to use as a starting point:

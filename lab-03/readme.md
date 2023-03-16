@@ -141,7 +141,7 @@ If you use the same sub query more than once move it to a variable. You may cons
 ## Connecting data sets to surface more insight
 Up until now we've been using sub queries to filter and derive data based upon aggregate functions across the same data set. What if we wanted to combine *different* sets of data to gain more insight into our data?
 
-Consider an online shopping site. On the whole customers browse the shop and, hopefully, end up paying. How useful might it be to perform some funnel anlaysis on what pages people visit (or don't visit) before paying? Sub queries empower us to answer just these sorts of questions.
+Consider an online shopping site. On the whole customers browse the shop and, hopefully, end up paying. How useful might it be to perform some funnel analysis on what pages people visit (or don't visit) before paying? Sub queries empower us to answer just these sorts of questions.
 
 If we browse the PageView data in Demotron we can see that there is a purchase confirmation page `confirmation.jsp`. For all the customers on our site that make a purchase, what pages do they visit?
 
