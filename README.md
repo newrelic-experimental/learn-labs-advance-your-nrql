@@ -19,5 +19,3 @@ In this lab you will learn to use **sub queries** to connect data from multiple 
 
 * [Lab 04: Building interactive dashboards](./lab-04)
 In this lab you will learn how to Build more flexible interactive dashboards by leveraging the **variable templating** features.
-
-intendintally spelt incorrectly.
