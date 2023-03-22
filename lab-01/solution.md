@@ -16,7 +16,7 @@ select aparse(pageUrl,'%/browse*') as product, pageUrl from PageView where pageU
 ### Challenge #2
 There are a number of solutions to this problem. This one of the shortest patterns you could use: `'%/*/%'`
 
-This uses to `%` wildcards to match (and discard) everything up until the first `/`, then capture everything until the next `/` (with `*`) and then discards the rest (the seconds `%`):
+This uses two `%` wildcards to match (and discard) everything up until the first `/`, then capture everything until the next `/` (with `*`) and then discards the rest (the seconds `%`):
 
 ```
 FROM PageView SELECT average(duration) FACET aparse(browserTransactionName,'%/*/%') as group WHERE appName='WebPortal'
