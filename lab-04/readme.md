@@ -27,7 +27,7 @@ The widget we added to the dashboard shows the number of page views over the las
 - Set the "Name to use in queries" field to `viewDevice`. This is the variable identifier. It can be any string starting with a letter and no spaces. We'll use this later in our query.
 - Set the "Display name" field to "Device". This is the 'friendly' label that will be shown along side our variable.
 - Set the Type to "List". This type allows us to specify a list of values to be selected, we'll explore the others later.
-- Enter the values "Desktop" and "Mobile" in the values field, separated by a comma: `Desktop,Mobile,Tablet`
+- Enter the values "Desktop", "Mobile" and "Tablet" in the values field, separated by a comma: `Desktop,Mobile,Tablet`
 - Enable the "multi-value" display option
 - For default value, choose "Select All"
 - Set the output format to "String"
