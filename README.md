@@ -1,5 +1,7 @@
 # Learn Labs: Advance your NRQL
 
+**SKO Attendee? Checkout the Lab Resources on Hubilo for access details etc**
+
 This collection of learn labs is designed to help teach some of the features of NRQL with examples and practice challenges. 
 
 If you are new to NRQL then you should checkout the [NRQL Lessons](https://opensource.newrelic.com/projects/newrelic/nr1-learn-nrql) application that you can install and run in your New Relic account. This is available in the application catalog and takes you through all the basics of NRQL.
