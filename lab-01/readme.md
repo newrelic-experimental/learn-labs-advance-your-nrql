@@ -40,7 +40,7 @@ This is best shown by example! Consider this pageUrl: `http://webportal.telco.nr
 
 ```
 Page URL: http://webportal.telco.nrdemo.com/browse/phones/99912353
-Pattern : http://webportal.telco.nrdemo.com/browse.*
+Pattern : http://webportal.telco.nrdemo.com/browse*
 ```
 
 You can see this in action here on Demotron:
