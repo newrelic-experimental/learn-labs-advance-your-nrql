@@ -178,10 +178,10 @@ aparse(string, pattern) AS (attribute1, attribute2, attribute3,...)
 
 Each `*` in the pattern will relate to an attribute in the AS clause.
 
-For example for the log line `four legged animals {"a":"dog", "b":"cat", "c":"fox"}` we can extract each of these three values into separate columns with this pattern like this:
+For example for the log line with message attribute value `four legged animals {"a":"dog", "b":"cat", "c":"fox"}` we can extract each of these three values into separate columns with this pattern like this:
 
 ```
-FROM Log WITH aparse('four legged animals {"a":"dog", "b":"cat", "c":"fox"}','%{"a":"*", "b":"*", "c":"*"}') AS (attrA,attrB,attrC) select attrA,attrB,attrC LIMIT 10
+FROM Log WITH aparse(message,'%{"a":"*", "b":"*", "c":"*"}') AS (attrA,attrB,attrC) select attrA,attrB,attrC LIMIT 10
 ```
 
 ![Table 0](images/table0.png)
