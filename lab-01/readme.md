@@ -274,10 +274,10 @@ WITH aparse('a=dog b=cat c=fox', 'a=* b=* c=*') AS (attrA,attrB,attrC)
 The capture equivalent of this is:
 
 ```
-FROM Log WITH  capture('a=dog b=cat c=fox', r'a=(?<attrA>.*?)=(?<attrB>.*?)=(?<attrC>.*?)')  select attrA,attrB,attrC,message LIMIT 10
+FROM Log WITH capture('a=dog b=cat c=fox', r'a=(?P<attrA>.*?)=(?P<attrB>.*?)=(?P<attrC>.*?)') AS (attrA, attrB, attrC)  select attrA,attrB,attrC,message LIMIT 10
 ```
 
-The main difference here is that rather than naming our captured groups in the AS clause they are named within the pttern itself. The general pattern for this is `(?<columnName>(.*?))` which in this case captures all characters (`.*?`) and saves them to a column called "columnName".
+The main difference here is that rather than naming our captured groups in the AS clause they are named within the pttern itself. The general pattern for this is `(?P<columnName>(.*?))` which in this case captures all characters (`.*?`) and saves them to a column called "columnName".
 
 
 ### ✏️ Bonus Challenge #10
