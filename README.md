@@ -1,7 +1,5 @@
 # Learn Labs: Advance your NRQL
 
-**SKO Attendee? Checkout the Lab Resources on Hubilo for access details etc**
-
 This collection of learn labs is designed to help teach some of the features of NRQL with examples and practice challenges. 
 
 If you are new to NRQL then you should checkout the [NRQL Lessons](https://opensource.newrelic.com/projects/newrelic/nr1-learn-nrql) application that you can install and run in your New Relic account. This is available in the application catalog and takes you through all the basics of NRQL.
@@ -24,3 +22,6 @@ In this lab you will learn how to Build more flexible interactive dashboards by 
 
 ## Demo Account Access
 These labs use data within the [New Relic University](https://learn.newrelic.com/) demo account "Demotron V2". Whilst you may be able to work through them on your own data you should reach out to your account team or contact the New Relic University at learn@newrelic.com for access to the demo account.
+
+*New Relic employee?*  Checkout the [Lab Resources](https://docs.google.com/presentation/d/1SeN_GthdLCD7dFW9-6Zwd3fJct_NYbuWuGO8jiUIRQM/edit?usp=sharing) for access details you can provide to customers.
+
