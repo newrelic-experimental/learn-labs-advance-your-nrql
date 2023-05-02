@@ -94,13 +94,11 @@ From: ...AND city in ({{chosenCity}})
 To:   ...AND ( city in ({{chosenCity}}) OR city IS NULL )
 ```
 
-You *could* even go a step further and make the inclusion of null cities an option chosen by the user via another variable: (There is an example of this on the solution dashboard.)
+You *could* even go a step further and make the inclusion of null cities an option chosen by the user via another *additional* variable: (There is an example of this on the solution dashboard.)
 
 ```
 ( 
-   ({{includeNullCity}}='yes' and (city in ({{chosenCity}})) OR city is null) 
-OR 
-   ({{includeNullCity}}='no' and city in ({{chosenCity}}))
+    ({{includeNullCity}}='yes' and city is null) OR (city in ({{chosenCity}}))
 )
 ```
 
